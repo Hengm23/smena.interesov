@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Смена Интересов — 7-дневная офлайн-смена для студентов 1 курса</title>
+<meta name="description" content="Образовательная 7-дневная смена для первокурсников: погружение в 7 профессий через реальные задачи, а не лекции." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #FBF3DE;
+    --bg-soft: #FFF8E7;
+    --card: #FFFFFF;
+    --accent: #E89B5C;
+    --accent-strong: #D97A3F;
+    --accent-soft: #FCE4D0;
+    --warn: #F8DA6A;
+    --ink: #3F2618;
+    --ink-2: #6B5340;
+    --line: #E8D8B5;
+    --shadow: 0 8px 32px rgba(63, 38, 24, 0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  a { color: inherit; text-decoration: none; }
+
+  /* NAV */
+  .nav {
+    padding: 24px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: -0.3px;
+  }
+  .logo span { color: var(--accent-strong); }
+  .nav-cta {
+    background: var(--ink);
+    color: var(--bg-soft);
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: transform .15s ease;
+  }
+  .nav-cta:hover { transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    padding: 60px 0 80px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .hero-badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .badge {
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+  }
+  .badge.outline {
+    background: transparent;
+    border: 1.5px solid var(--accent);
+    color: var(--accent-strong);
+  }
+  h1 {
+    font-size: clamp(40px, 5.5vw, 72px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin-bottom: 24px;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--accent-strong);
+  }
+  .hero-sub {
+    font-size: 19px;
+    color: var(--ink-2);
+    margin-bottom: 36px;
+    max-width: 540px;
+  }
+  .hero-sub b { color: var(--ink); font-weight: 700; }
+  .cta-row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent-strong);
+    color: #fff;
+    padding: 16px 32px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 700;
+    box-shadow: 0 6px 20px rgba(217, 122, 63, 0.3);
+    transition: transform .15s ease, box-shadow .15s ease;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(217, 122, 63, 0.4);
+  }
+  .btn-ghost {
+    color: var(--ink);
+    padding: 16px 24px;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    font-size: 15px;
+  }
+  .btn-ghost:hover { border-bottom-color: var(--ink); }
+
+  .hero-card {
+    background: var(--accent);
+    border-radius: 32px;
+    padding: 40px;
+    color: #fff;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 200px; height: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+  }
+  .hero-card .big {
+    font-size: 80px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -2px;
+  }
+  .hero-card .label { font-size: 17px; opacity: 0.95; max-width: 240px; }
+  .hero-card .divider { height: 1px; background: rgba(255,255,255,0.3); margin: 28px 0; }
+  .hero-card .row { display: flex; gap: 32px; }
+  .hero-card .row .small { font-size: 28px; font-weight: 700; line-height: 1.1; }
+  .hero-card .row .small-l { font-size: 13px; opacity: 0.9; margin-top: 4px; }
+
+  /* SECTION */
+  section { padding: 80px 0; }
+  .section-head { margin-bottom: 56px; max-width: 760px; }
+  .eyebrow {
+    color: var(--accent-strong);
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-size: clamp(30px, 3.5vw, 48px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 18px;
+    color: var(--ink-2);
+  }
+
+  /* PROBLEM (stats) */
+  .problem { background: var(--bg-soft); }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .stat-card {
+    background: var(--card);
+    border-radius: 24px;
+    padding: 36px 32px;
+    border: 1px solid var(--line);
+  }
+  .stat-card.accent {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+  }
+  .stat-num {
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: var(--accent-strong);
+    margin-bottom: 12px;
+  }
+  .stat-card.accent .stat-num { color: #fff; }
+  .stat-text {
+    font-size: 16px;
+    color: var(--ink-2);
+    line-height: 1.5;
+  }
+  .stat-card.accent .stat-text { color: rgba(255,255,255,0.95); }
+  .source {
+    margin-top: 24px;
+    font-size: 13px;
+    color: var(--ink-2);
+    font-style: italic;
+  }
+
+  /* AUDIENCE */
+  .aud-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .aud-card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 28px;
+    border: 1px solid var(--line);
+  }
+  .aud-card .icon {
+    width: 44px; height: 44px;
+    background: var(--accent-soft);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+  .aud-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .aud-card p { color: var(--ink-2); font-size: 15px; }
+
+  .pains {
+    margin-top: 32px;
+    background: var(--accent-soft);
+    border-radius: 20px;
+    padding: 28px 32px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 32px;
+    align-items: start;
+  }
+  .pains h3 { font-size: 17px; font-weight: 700; color: var(--accent-strong); }
+  .pains ul { list-style: none; }
+  .pains li {
+    padding: 8px 0 8px 28px;
+    position: relative;
+    color: var(--ink);
+    font-size: 16px;
+  }
+  .pains li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent-strong);
+    font-weight: 700;
+  }
+
+  /* FORMAT */
+  .format { background: var(--bg-soft); }
+  .format-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .f-card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 32px;
+    border: 1px solid var(--line);
+    display: flex;
+    gap: 20px;
+  }
+  .f-num {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--accent-strong);
+    line-height: 1;
+    min-width: 56px;
+  }
+  .f-card h3 { font-size: 19px; font-weight: 700; margin-bottom: 6px; }
+  .f-card p { color: var(--ink-2); font-size: 15px; }
+
+  /* TIMELINE */
+  .timeline {
+    margin-top: 24px;
+    background: var(--card);
+    border-radius: 24px;
+    padding: 40px;
+    border: 1px solid var(--line);
+    overflow-x: auto;
+  }
+  .tl-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 12px;
+    min-width: 700px;
+  }
+  .tl-step {
+    text-align: center;
+    position: relative;
+  }
+  .tl-step::after {
+    content: '';
+    position: absolute;
+    top: 16px; left: 50%; right: -50%;
+    height: 2px;
+    background: var(--line);
+    z-index: 0;
+  }
+  .tl-step:last-child::after { display: none; }
+  .tl-dot {
+    width: 32px; height: 32px;
+    background: var(--accent);
+    border: 4px solid var(--bg-soft);
+    border-radius: 50%;
+    margin: 0 auto 14px;
+    position: relative;
+    z-index: 1;
+  }
+  .tl-step.first .tl-dot { background: var(--accent-strong); }
+  .tl-step.last .tl-dot { background: var(--ink); }
+  .tl-month {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .tl-block { font-size: 13px; color: var(--ink-2); }
+
+  /* WHY */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .why-card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 32px;
+    border: 1px solid var(--line);
+  }
+  .why-card .check {
+    width: 40px; height: 40px;
+    background: var(--accent-strong);
+    color: #fff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  .why-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+  .why-card p { color: var(--ink-2); font-size: 15px; }
+
+  /* MVP */
+  .mvp { background: var(--bg-soft); }
+  .mvp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .mvp-steps {
+    background: var(--card);
+    border-radius: 24px;
+    padding: 32px;
+    border: 1px solid var(--line);
+  }
+  .mvp-step {
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .mvp-step:last-child { border-bottom: none; }
+  .mvp-step .n {
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .mvp-step b { display: block; font-size: 16px; margin-bottom: 2px; }
+  .mvp-step span { color: var(--ink-2); font-size: 14px; }
+  .mvp-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .donut {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 28px;
+    border: 1px solid var(--line);
+    text-align: center;
+  }
+  .donut .n {
+    font-size: 56px;
+    font-weight: 800;
+    color: var(--accent-strong);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -2px;
+  }
+  .donut .l { font-size: 14px; color: var(--ink-2); }
+
+  /* FINAL CTA */
+  .final {
+    background: var(--ink);
+    color: var(--bg-soft);
+    border-radius: 32px;
+    padding: 80px 60px;
+    text-align: center;
+    margin: 80px 0;
+  }
+  .final h2 { color: var(--bg-soft); }
+  .final p {
+    color: rgba(251, 243, 222, 0.8);
+    font-size: 18px;
+    max-width: 560px;
+    margin: 16px auto 36px;
+  }
+  .final .btn-primary { background: var(--accent); }
+  .final .btn-primary:hover { background: var(--accent-strong); }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 0 60px;
+    color: var(--ink-2);
+    font-size: 14px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  /* MOBILE */
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 40px; padding: 30px 0 60px; }
+    .stats, .aud-grid, .format-grid, .why-grid { grid-template-columns: 1fr; }
+    .mvp-grid { grid-template-columns: 1fr; }
+    .pains { grid-template-columns: 1fr; gap: 16px; }
+    .final { padding: 50px 28px; margin: 40px 0; }
+    section { padding: 60px 0; }
+    .nav-cta { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap nav">
+  <div class="logo">Смена<span>Интересов</span></div>
+  <a class="nav-cta" href="https://forms.yandex.ru/u/69fa07d51f1eb50b8c9fd1c6" target="_blank" rel="noopener">Оставить заявку</a>
+</header>
+
+<!-- HERO -->
+<main class="wrap hero">
+  <div>
+    <div class="hero-badges">
+      <span class="badge">Образовательный стартап</span>
+      <span class="badge outline">Профориентация</span>
+    </div>
+    <h1>7 дней, чтобы <em>посмотреть на профессию</em> по-новому</h1>
+    <p class="hero-sub">
+      Образовательная <b>офлайн-смена для студентов 1 курса</b> — погружение в 7 профессий через реальные задачи, а не скучные лекции.
+    </p>
+    <div class="cta-row">
+      <a class="btn-primary" href="https://forms.yandex.ru/u/69fa07d51f1eb50b8c9fd1c6" target="_blank" rel="noopener">Оставить заявку →</a>
+      <a class="btn-ghost" href="#format">Как это устроено</a>
+    </div>
+  </div>
+  <div class="hero-card">
+    <div class="big">7</div>
+    <div class="label">профессий за одну смену — попробуй каждую руками</div>
+    <div class="divider"></div>
+    <div class="row">
+      <div>
+        <div class="small">5</div>
+        <div class="small-l">направлений-блоков с декабря по май</div>
+      </div>
+      <div>
+        <div class="small">4</div>
+        <div class="small-l">дня очного съезда летом</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Зачем это нужно</div>
+      <h2>87% первокурсников разочарованы в выборе</h2>
+      <p class="section-sub">Учатся 4 года — и работают не по специальности. Мы помогаем разобраться в первый год, пока ещё можно поменять траекторию.</p>
+    </div>
+    <div class="stats">
+      <div class="stat-card accent">
+        <div class="stat-num">87%</div>
+        <div class="stat-text">российских студентов разочаровываются в специальности уже на первом курсе</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">34%</div>
+        <div class="stat-text">всерьёз задумываются об отчислении</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">12%</div>
+        <div class="stat-text">бросают учёбу — теряют годы и деньги</div>
+      </div>
+    </div>
+    <p class="source">Источник: РАНХиГС, 2025. Наш собственный опрос: 30% из 33 опрошенных недовольны специальностью.</p>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Для кого</div>
+      <h2>Если ты на 1 курсе и сомневаешься</h2>
+      <p class="section-sub">Не хочешь учиться 4 года, чтобы потом понять — это не твоё. Хочешь пощупать профессию руками, прежде чем тратить время.</p>
+    </div>
+    <div class="aud-grid">
+      <div class="aud-card">
+        <div class="icon">🎓</div>
+        <h3>18–19 лет, 1 курс</h3>
+        <p>Студенты крупных городов России, которые ещё не привязаны к одной траектории.</p>
+      </div>
+      <div class="aud-card">
+        <div class="icon">💸</div>
+        <h3>Бюджет студента</h3>
+        <p>Низкий и средний доход, поддержка родителей. Поэтому смена бесплатная — её спонсирует государство.</p>
+      </div>
+      <div class="aud-card">
+        <div class="icon">🎯</div>
+        <h3>Осознанный выбор</h3>
+        <p>Ценят своё время и не хотят ошибиться со специальностью на годы вперёд.</p>
+      </div>
+    </div>
+    <div class="pains">
+      <h3>Что у тебя сейчас в голове</h3>
+      <ul>
+        <li>«Учусь — не уверен, что это моё»</li>
+        <li>«Хочу попробовать профессию, а не только читать про неё»</li>
+        <li>«Лекции скучные, а живых задач нигде не дают»</li>
+        <li>«Нужно понять себя, пока не поздно»</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FORMAT -->
+<section class="format" id="format">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Как это устроено</div>
+      <h2>Полгода блоков + летний съезд</h2>
+      <p class="section-sub">5 направлений по одному в месяц. Очные экскурсии в офисы крупных компаний — посмотришь, чем реально заняты люди.</p>
+    </div>
+    <div class="format-grid">
+      <div class="f-card"><div class="f-num">01</div><div><h3>Медицина</h3><p>Реальные задачи врачей, а не учебники анатомии.</p></div></div>
+      <div class="f-card"><div class="f-num">02</div><div><h3>Программирование</h3><p>Один день из жизни разработчика в IT-компании.</p></div></div>
+      <div class="f-card"><div class="f-num">03</div><div><h3>Юриспруденция</h3><p>Кейсы из практики, а не статьи кодекса.</p></div></div>
+      <div class="f-card"><div class="f-num">04</div><div><h3>Экономика и управление</h3><p>Как принимаются решения в живом бизнесе.</p></div></div>
+      <div class="f-card"><div class="f-num">05</div><div><h3>Инженерия</h3><p>Реальные конструкторские задачи на производстве.</p></div></div>
+      <div class="f-card"><div class="f-num">06</div><div><h3>Летний очный съезд</h3><p>4 дня вместе со всеми участниками — soft skills и нетворк.</p></div></div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-row">
+        <div class="tl-step first"><div class="tl-dot"></div><div class="tl-month">Декабрь</div><div class="tl-block">Старт подготовки</div></div>
+        <div class="tl-step"><div class="tl-dot"></div><div class="tl-month">Январь</div><div class="tl-block">Медицина</div></div>
+        <div class="tl-step"><div class="tl-dot"></div><div class="tl-month">Февраль</div><div class="tl-block">Программирование</div></div>
+        <div class="tl-step"><div class="tl-dot"></div><div class="tl-month">Март</div><div class="tl-block">Юриспруденция</div></div>
+        <div class="tl-step"><div class="tl-dot"></div><div class="tl-month">Апрель</div><div class="tl-block">Экономика</div></div>
+        <div class="tl-step"><div class="tl-dot"></div><div class="tl-month">Май</div><div class="tl-block">Инженерия</div></div>
+        <div class="tl-step last"><div class="tl-dot"></div><div class="tl-month">Июнь</div><div class="tl-block">Очный съезд</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Почему стоит обратиться к нам</div>
+      <h2>Три причины зайти на смену</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="check">★</div>
+        <h3>Найдёшь единомышленников</h3>
+        <p>Поделишься опытом и вдохновишь идеями других. Это твоя будущая среда — не одиночное решение в комнате.</p>
+      </div>
+      <div class="why-card">
+        <div class="check">★</div>
+        <h3>Попробуешь сразу несколько ролей</h3>
+        <p>Отличный вариант примерить на себя 3 разных профессии за один цикл и решить, какое направление тебе ближе.</p>
+      </div>
+      <div class="why-card">
+        <div class="check">★</div>
+        <h3>Поймёшь — твоё или нет</h3>
+        <p>Через практические задачи можно честно понять: нравится ли тебе именно это, или ты выбрал по инерции.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MVP / METRICS -->
+<section class="mvp">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">MVP — уже сейчас</div>
+      <h2>Начни с 3-дневного онлайн-курса</h2>
+      <p class="section-sub">Маркетолог, психолог, дизайнер — за 3 дня. Это короткий тест-драйв перед большой сменой.</p>
+    </div>
+    <div class="mvp-grid">
+      <div class="mvp-steps">
+        <div class="mvp-step"><div class="n">1</div><div><b>Регистрация</b><span>Заявка через Яндекс-форму</span></div></div>
+        <div class="mvp-step"><div class="n">2</div><div><b>Сообщество</b><span>Telegram-чат для участников</span></div></div>
+        <div class="mvp-step"><div class="n">3</div><div><b>Практика</b><span>Сессии в Zoom по каждой профессии</span></div></div>
+        <div class="mvp-step"><div class="n">4</div><div><b>Результат</b><span>Финальная задача и личная рефлексия</span></div></div>
+      </div>
+      <div class="mvp-metrics">
+        <div class="donut">
+          <div class="n">70%</div>
+          <div class="l">доходят до конца курса</div>
+        </div>
+        <div class="donut">
+          <div class="n">50%</div>
+          <div class="l">определяются с выбором профессии</div>
+        </div>
+        <div class="donut" style="grid-column: 1 / -1; background: var(--accent-soft); border-color: var(--accent);">
+          <div class="l" style="color: var(--ink); font-size: 16px; line-height: 1.5;">
+            <b>Цель MVP</b> — на практике проверить: понимает ли студент, нравится ли ему профессия.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="wrap">
+  <section class="final">
+    <h2>Готов посмотреть на профессию иначе?</h2>
+    <p>Оставь заявку — вернёмся с деталями ближайшего набора. Участие бесплатное, проект поддерживается грантом.</p>
+    <a class="btn-primary" href="https://forms.yandex.ru/u/69fa07d51f1eb50b8c9fd1c6" target="_blank" rel="noopener">Заполнить заявку</a>
+  </section>
+</div>
+
+<footer class="wrap">
+  <div>© Смена Интересов · образовательный социальный проект</div>
+  <div>В рамках проекта «Я в деле»</div>
+</footer>
+
+</body>
+</html>
